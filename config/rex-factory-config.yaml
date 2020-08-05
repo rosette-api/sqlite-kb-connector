@@ -1,0 +1,5 @@
+kbs:
+  - /customKBs/MyKnowledgeBase1
+  - ${rex-root}/data/flinx/data/kb/basis
+rootDirectory: ${rex-root}
+linkEntities: true
