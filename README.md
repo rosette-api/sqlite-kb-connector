@@ -90,7 +90,7 @@ When linkEntities option is false
 curl -s --request POST 'http://localhost:8181/rest/v1/entities' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
---data '{"content":"Boston is beautiful.", "options": {"linkEntities": true}}' \
+--data '{"content":"Boston is beautiful.", "options": {"linkEntities": false}}' \
 | jq .
 ``` 
 the entityId is T0, which is a temporary id.
