@@ -116,9 +116,7 @@ the entityId is T0, which is a temporary id.
 
 ## The Docker way
 
-Edit the Rosette Server `docker-compose.yaml` file to use the custom knowledge base.
-
-Edit the docker-compose.yaml file, adding the following files to the volumes section.
+1. Edit the `docker-compose.yaml` file, adding the following files to the volumes section.
 ```
 volumes:
   - rosette-roots-vol:/rosette/server/roots:ro
@@ -128,7 +126,7 @@ volumes:
   - ${KB_CONNECTOR_HOME}/target/sqlite-kb-connector-1.0.jar:/rosette/server/launcher/bundles/sqlite-kb-connector-1.0.jar:ro
 ```
 
-Start the Rosette Server Docker container
+2. Start the Rosette Server Docker container
 ```
 ROSAPI_LICENSE_PATH=<path-to-license>/rosette-license.xml docker-compose up
 ```
