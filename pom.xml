@@ -8,9 +8,9 @@
     <description>SQLite Knowledge Base Connector for Rosette Server</description>
     <properties>
         <rosapi.home>/must-be-specified</rosapi.home> <!-- where Rosette Server is installed -->
-        <rosapi-version>1.16.1</rosapi-version>
-        <rex-je-version>7.46.0.c62.2</rex-je-version>
-        <rex-osgi-version>7.46.0.c62_2</rex-osgi-version>
+        <rosapi-version>1.17.0</rosapi-version>
+        <rex-je-version>7.46.1.c62.2</rex-je-version>
+        <rex-osgi-version>7.46.1.c62_2</rex-osgi-version>
         <flinx-version>0.4.26.c62.2</flinx-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
