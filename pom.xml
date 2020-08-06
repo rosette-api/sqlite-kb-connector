@@ -84,7 +84,7 @@
             <groupId>com.basistech.rex-je</groupId>
             <artifactId>rex-osgi</artifactId>
             <version>${rex-je-version}</version>
-            <systemPath>${rosapi.home}/launcher/bundles/rex-osgi-${rex-osgi-version}.jar</systemPath>
+            <systemPath>${rosapi.home}/launcher/bundles/load_last/rex-osgi-${rex-osgi-version}.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>
