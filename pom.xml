@@ -139,7 +139,7 @@
                                     <workingDirectory>${project.build.directory}</workingDirectory>
                                     <arguments>
                                         <argument>-xf</argument>
-                                        <argument>${rosapi.home}/launcher/bundles/rex-osgi-${rex-osgi-version}.jar</argument>
+                                        <argument>${rosapi.home}/launcher/bundles/loadLast/rex-osgi-${rex-osgi-version}.jar</argument>
                                         <argument>lib/flinx-api-internal-${flinx-version}.jar</argument>
                                     </arguments>
                                 </configuration>
