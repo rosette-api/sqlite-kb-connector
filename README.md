@@ -29,9 +29,10 @@ This will build the `sqlite-kb-connector-1.0.jar` in the target directory.
 
 ## Integrate with Rosette Server
 
-Copy `sqlite-kb-connector-1.0.jar` into Rosette Server
+Copy `sqlite-kb-connector-1.0.jar` and 'kb/' into Rosette Server
 ```
 cp target/sqlite-kb-connector-1.0.jar $ROSAPI_HOME/launcher/bundles
+cp -r kb $ROSAPI_HOME
 ```
 
 Edit `$ROSAPI_HOME/launcher/config/rosette/rex-factory-config.yaml` and add the following lines
@@ -43,7 +44,7 @@ linkEntities: true
 
 #Custom list of Knowledge Bases for the linker, in order of priority.
 kbs:
-    - sqlite-kb-connector/kb/MyKnowledgeBase1
+    - ../kb/MyKnowledgeBase1
     - ${rex-root}/data/flinx/data/kb/basis
 ```
 
