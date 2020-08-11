@@ -29,7 +29,7 @@ This will build the `sqlite-kb-connector-1.0.jar` in the target directory.
 
 ## Integrate with Rosette Server
 
-Copy `sqlite-kb-connector-1.0.jar` and 'kb/' into Rosette Server
+Copy `sqlite-kb-connector-1.0.jar` and `kb/` into Rosette Server
 ```
 cp target/sqlite-kb-connector-1.0.jar $ROSAPI_HOME/launcher/bundles
 cp -r kb $ROSAPI_HOME
