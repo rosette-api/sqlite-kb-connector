@@ -21,6 +21,7 @@ export KB_CONNECTOR_HOME=/path-to-this-directory
 To build the Sqlite Knowledge Base Connector, run
 
 ```
+cd $KB_CONNECTOR_HOME
 mvn -Drosapi.home=$ROSAPI_HOME -P extract-flinx-api-jar
 mvn -Drosapi.home=$ROSAPI_HOME -P build-kb-connector
 ```
@@ -35,7 +36,7 @@ cp target/sqlite-kb-connector-1.0.jar $ROSAPI_HOME/launcher/bundles
 cp -r kb $ROSAPI_HOME
 ```
 
-Edit `$ROSAPI_HOME/launcher/config/rosette/rex-factory-config.yaml` and add the following lines
+Edit `$ROSAPI_HOME/launcher/config/rosapi/rex-factory-config.yaml` and add the following lines
 
 ```
 #The option to link mentions to knowledge base entities with disambiguation model.
