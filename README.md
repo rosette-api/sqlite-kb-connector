@@ -15,7 +15,7 @@ Requirements:
 Define some variables
 
 ```
-export ROSAPI_HOME=/path-to-rosette-server-install-directory
+export ROSAPI_HOME=/path-to-rosette-install/server directory
 export KB_CONNECTOR_HOME=/path-to-this-directory
 ```
 To build the Sqlite Knowledge Base Connector, run
