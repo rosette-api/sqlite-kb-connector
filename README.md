@@ -53,7 +53,7 @@ kbs:
 
 Start Rosette Server
 ```
-$ROSAPI_HOME/bin/launch console
+$ROSAPI_HOME/bin/launch.sh console
 ```
 Call the /entities endpoint with linking to the custom knowledge base
 ```
