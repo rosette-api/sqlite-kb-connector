@@ -8,11 +8,15 @@
     <description>SQLite Knowledge Base Connector for Rosette Server</description>
     <properties>
         <rosapi.home>/must-be-specified</rosapi.home> <!-- where Rosette Server is installed -->
-        <rosapi-version>1.17.0</rosapi-version>
-        <rex-je-version>7.46.1.c62.2</rex-je-version>
-        <rex-osgi-version>7.46.1.c62_2</rex-osgi-version>
-        <flinx-version>0.4.26.c62.2</flinx-version>
+        <rosapi-version>1.24.0</rosapi-version>
+        <rex-je-version>7.55.0.c68.0</rex-je-version>
+        <rex-osgi-version>7.55.0.c68_0</rex-osgi-version>
+        <flinx-version>0.4.36.c68.0</flinx-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <shade-prefix>com.basistech.rosette.rex_je.</shade-prefix>
+        <slash-shade-prefix>com/basistech/rosette/rex_je/</slash-shade-prefix>
+        <skip-manifest-check>false</skip-manifest-check>
+        <slash-shade-resource-prefix>com/basistech/rosette/rex_je</slash-shade-resource-prefix>
     </properties>
     <build>
         <defaultGoal>install</defaultGoal>
@@ -38,9 +42,13 @@
                         </goals>
                         <configuration>
                             <artifactSet>
-                                <includes>
-                                    <include>org.xerial:sqlite-jdbc</include>
-                                </includes>
+	                        <includes>
+                                <include>org.xerial:sqlite-jdbc</include>
+                                <include>com.fasterxml.jackson.core:jackson-core</include>
+                                <include>com.fasterxml.jackson.core:jackson-databind</include>
+                                <include>com.google.guava:guava</include>
+							    <include>commons-io:commons-io</include> 
+                            </includes>
                             </artifactSet>
                         </configuration>
                     </execution>
@@ -62,49 +70,49 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.10.0</version>
-            <systemPath>${rosapi.home}/launcher/bundles/jackson-core-2.10.0.jar</systemPath>
-            <scope>system</scope>
+            <version>2.14.0</version>
+		    <systemPath>${rosapi.home}/launcher/bundles/com.fasterxml.jackson.core.jackson-core-2.14.0.jar</systemPath>
+		    <scope>system</scope> 
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-            <systemPath>${rosapi.home}/launcher/bundles/commons-io-2.6.jar</systemPath>
-            <scope>system</scope>
+            <version>2.11.0</version>
+            <systemPath>${rosapi.home}/launcher/bundles/org.apache.commons.commons-io-2.11.0.jar</systemPath>
+			<scope>system</scope> 
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.10.0</version>
-            <systemPath>${rosapi.home}/launcher/bundles/jackson-databind-2.10.0.jar</systemPath>
-            <scope>system</scope>
+            <version>2.14.0</version>
+			<systemPath>${rosapi.home}/launcher/bundles/com.fasterxml.jackson.core.jackson-databind-2.14.0.jar</systemPath>
+			<scope>system</scope>
         </dependency>
         <dependency>
             <groupId>com.basistech.rex-je</groupId>
             <artifactId>rex-osgi</artifactId>
             <version>${rex-je-version}</version>
             <systemPath>${rosapi.home}/launcher/bundles/loadLast/rex-osgi-${rex-osgi-version}.jar</systemPath>
-            <scope>system</scope>
+			<scope>system</scope> 
         </dependency>
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>adm-model</artifactId>
-            <version>2.7.0</version>
-            <systemPath>${rosapi.home}/launcher/bundles/adm-model-2.7.0.jar</systemPath>
+            <version>2.7.4</version>
+            <systemPath>${rosapi.home}/launcher/bundles/adm-model-2.7.4.jar</systemPath>
             <scope>system</scope>
         </dependency>
         <dependency>
             <groupId>com.basistech</groupId>
             <artifactId>btcommon-bundle</artifactId>
-            <version>37.0.1</version>
-            <systemPath>${rosapi.home}/launcher/bundles/common-api-37.0.1.jar</systemPath>
-            <scope>system</scope>
+            <version>37.5.1</version>
+            <systemPath>${rosapi.home}/launcher/bundles/com.basistech.common-api-37.5.1.jar</systemPath>
+            <scope>system</scope> 
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.30</version>
+            <version>1.7.36</version>
         </dependency>
         <dependency>
             <groupId>com.google.auto.service</groupId>
@@ -114,7 +122,7 @@
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.27.2.1</version>
+            <version>3.32.3.3</version>
         </dependency>
     </dependencies>
     <profiles>
