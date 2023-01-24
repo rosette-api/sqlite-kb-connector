@@ -16,13 +16,15 @@ package sample;
 
 import com.basistech.rosette.RosetteRuntimeException;
 import com.basistech.rosette.dm.Token;
-import com.basistech.rosette.flinx.api.BaseCandidateEntity;
-import com.basistech.rosette.flinx.api.BaseCandidateMention;
-import com.basistech.rosette.flinx.api.ContextVectorHandler;
-import com.basistech.rosette.flinx.api.KnowledgeBase;
-import com.basistech.rosette.flinx.api.data.Document;
-import com.basistech.rosette.flinx.api.data.ScoredValue;
-import com.basistech.rosette.flinx.api.service.KnowledgeBaseVariantFactory;
+import com.basistech.rosette.dm.Entity;
+import com.basistech.rosette.dm.Mention;
+import com.basistech.rosette.flinx.kb.BaseCandidateEntity;
+import com.basistech.rosette.flinx.kb.BaseCandidateMention;
+import com.basistech.rosette.flinx.kb.ContextVectorHandler;
+import com.basistech.rosette.flinx.kb.KnowledgeBase;
+import com.basistech.rosette.flinx.kb.data.Document;
+import com.basistech.rosette.flinx.kb.data.ScoredValue;
+import com.basistech.rosette.flinx.kb.service.KnowledgeBaseVariantFactory;
 import com.basistech.util.LanguageCode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.auto.service.AutoService;
@@ -221,7 +223,6 @@ public final class SQLiteKnowledgeBase implements KnowledgeBase {
     @Override
     public List<BaseCandidateMention> findCandidates(Document document, boolean training) {
         LOG.info("Generating candidates with SQLite backend");
-
         List<BaseCandidateMention> ret = Lists.newArrayList();
         List<Token> docTokens = document.getTokens();
         for (int i = 0; i < docTokens.size(); i++) {
@@ -230,7 +231,6 @@ public final class SQLiteKnowledgeBase implements KnowledgeBase {
             if (aliases.size() > 0) {
                 for (String alias : aliases.keySet()) {
                     List<BaseCandidateEntity> candidates = Lists.newArrayList(BaseCandidateEntity.nilCandidate());
-
                     List<String> ids = aliases.get(alias);
                     for (String id: ids) {
                         candidates.add(new BaseCandidateEntity(id, lookupEntityType(id), getExtendedProperties(id)));
@@ -243,8 +243,33 @@ public final class SQLiteKnowledgeBase implements KnowledgeBase {
                             break;
                         }
                     }
-
                     ret.add(new BaseCandidateMention(i, i + numTokens, candidates, language));
+                }
+            }
+        }
+        return ret;
+    }
+
+    @Override
+    public List<BaseCandidateMention> findEntities(Document document) {
+        LOG.info("Searching entities in SQLite backend");
+        List<BaseCandidateMention> ret = Lists.newArrayList();
+        List<Entity> docEntities = document.getEntities();
+        for (int i = 0; i < docEntities.size(); i++) {
+            Entity entity = document.getEntities().get(i);
+            for (int j = 0; j < entity.getMentions().size(); j++) {
+                Mention mention = entity.getMentions().get(j);
+                List<Integer> mentionTokens = document.getMentionTokens(mention);
+                int fromTokenIndex = mentionTokens.get(0);
+                int toTokenIndex = mentionTokens.get(1);
+                String alias = getTokenString(document, fromTokenIndex, toTokenIndex - fromTokenIndex);
+                List<String> ids = lookupAlias(alias);
+                if (ids.size() > 0) {
+                    List<BaseCandidateEntity> candidates = Lists.newArrayList(BaseCandidateEntity.nilCandidate());
+                    for (String id: ids) {
+                        candidates.add(new BaseCandidateEntity(id, lookupEntityType(id), getExtendedProperties(id)));
+                    }
+                    ret.add(new BaseCandidateMention(fromTokenIndex, toTokenIndex, candidates, language));
                 }
             }
         }

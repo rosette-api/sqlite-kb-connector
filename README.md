@@ -6,7 +6,7 @@ This package includes a sample knowledge base with an entry of `Boston`.
 The knowledge base is stored as a sqlite database.
 
 Requirements:
-- Rosette Enterprise 1.17.0
+- Rosette Enterprise 1.24.0
 - Rosette Enterprise license for Entity Extraction and English
 - [OPTIONAL] If you start Rosette Server via docker-compose, Docker must be installed and running on your machine
 
